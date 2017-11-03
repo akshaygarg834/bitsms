@@ -29,12 +29,22 @@ var interval = setInterval(()=>{
         old=INR;
         var options = { method: 'GET',
         url: `https://smsapi.engineeringtgr.com/send/?Mobile=${mobile}&Password=${password}&Key=${API_KEY}&Message=${message}&To=${to}`,
-        proxy :'http://172.30.0.12:3128',
+        // proxy :'http://172.30.0.12:3128',
         headers: 
          { 'cache-control': 'no-cache' } };
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-            console.log(`SMS API RESPONSE CODE ${response.statusCode}`);
+            console.log(`${to} : SMS API RESPONSE CODE ${response.statusCode}`);
+        });
+        old=INR;
+        var options = { method: 'GET',
+        url: `https://smsapi.engineeringtgr.com/send/?Mobile=${mobile}&Password=${password}&Key=${API_KEY}&Message=${message}&To=${mobile}`,
+        // proxy :'http://172.30.0.12:3128',
+        headers: 
+         { 'cache-control': 'no-cache' } };
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+            console.log(`${mobile} : SMS API RESPONSE CODE ${response.statusCode}`);
         });
       }
     });
